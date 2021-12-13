@@ -215,6 +215,11 @@ paths:
         name: Auth
         required: true
         type: string
+      - description: account id
+        in: query
+        name: id
+        required: true
+        type: string
       produces:
       - application/json
       responses:
@@ -222,7 +227,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/model.CourseCertificate'
-      summary: Get's a account using the session
+      summary: Gets an account by id
       tags:
       - account
   /v1/signup/welcome/{uid}:
@@ -232,7 +237,7 @@ paths:
       parameters:
       - description: uid from email
         in: query
-        name: string
+        name: uid
         required: true
         type: string
       produces:
@@ -250,7 +255,7 @@ paths:
       parameters:
       - description: uid from url
         in: query
-        name: string
+        name: uid
         required: true
         type: string
       produces:

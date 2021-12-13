@@ -164,13 +164,20 @@ var doc = `{
                 "tags": [
                     "account"
                 ],
-                "summary": "Get's a account using the session",
+                "summary": "Gets an account by id",
                 "parameters": [
                     {
                         "type": "string",
                         "description": "Authentication header",
                         "name": "Auth",
                         "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "account id",
+                        "name": "id",
+                        "in": "query",
                         "required": true
                     }
                 ],
@@ -200,7 +207,7 @@ var doc = `{
                     {
                         "type": "string",
                         "description": "uid from email",
-                        "name": "string",
+                        "name": "uid",
                         "in": "query",
                         "required": true
                     }
@@ -228,7 +235,7 @@ var doc = `{
                     {
                         "type": "string",
                         "description": "uid from url",
-                        "name": "string",
+                        "name": "uid",
                         "in": "query",
                         "required": true
                     }
