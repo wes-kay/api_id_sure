@@ -162,19 +162,19 @@ paths:
       consumes:
       - application/json
       parameters:
-      - in: query
+      - in: formData
         name: email
         required: true
         type: string
-      - in: query
+      - in: formData
         name: password
         required: true
         type: string
-      - in: query
+      - in: formData
         name: passwordconfirm
         required: true
         type: string
-      - in: query
+      - in: formData
         name: temp
         type: boolean
       produces:
@@ -206,6 +206,28 @@ paths:
       tags:
       - account
   /v1/account/{id}:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      - description: account id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: Deletes an account by ID
+      tags:
+      - account
     get:
       consumes:
       - application/json
@@ -228,6 +250,62 @@ paths:
           schema:
             $ref: '#/definitions/model.Account'
       summary: Gets an account by id
+      tags:
+      - account
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      - description: account id
+        in: query
+        name: id
+        required: true
+        type: string
+      - in: formData
+        name: email
+        required: true
+        type: string
+      - in: formData
+        name: email_validated
+        required: true
+        type: boolean
+      - in: formData
+        name: id
+        required: true
+        type: integer
+      - in: formData
+        name: image
+        type: string
+      - in: formData
+        name: name
+        required: true
+        type: string
+      - in: formData
+        name: phone
+        required: true
+        type: integer
+      - in: formData
+        name: role
+        required: true
+        type: integer
+      - in: formData
+        name: status
+        required: true
+        type: integer
+      - in: formData
+        name: temp
+        type: boolean
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: Updates an account by ID
       tags:
       - account
   /v1/signup/welcome/{uid}:
