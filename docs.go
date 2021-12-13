@@ -133,6 +133,37 @@ var doc = `{
                 "tags": [
                     "account"
                 ],
+                "summary": "Get's account info using the session token",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "Auth",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.CourseCertificate"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/account/{id}": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "account"
+                ],
                 "summary": "Get's a account using the session",
                 "parameters": [
                     {

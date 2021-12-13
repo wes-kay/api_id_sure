@@ -202,6 +202,26 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/model.CourseCertificate'
+      summary: Get's account info using the session token
+      tags:
+      - account
+  /v1/account/{id}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.CourseCertificate'
       summary: Get's a account using the session
       tags:
       - account
