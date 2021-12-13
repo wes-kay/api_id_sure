@@ -1,4 +1,34 @@
 basePath: /v1
+definitions:
+  model.Account:
+    properties:
+      email:
+        type: string
+      email_validated:
+        type: boolean
+      id:
+        type: integer
+      image:
+        type: string
+      name:
+        type: string
+      phone:
+        type: integer
+      role:
+        type: integer
+      status:
+        type: integer
+      temp:
+        type: boolean
+    required:
+    - email
+    - email_validated
+    - id
+    - name
+    - phone
+    - role
+    - status
+    type: object
 info:
   contact:
     email: keeling.wesley@gmail.com
@@ -33,7 +63,9 @@ paths:
       - application/json
       responses:
         "200":
-          description: ""
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Account'
       summary: Signes into acocunt
       tags:
       - signin
