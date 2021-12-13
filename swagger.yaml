@@ -5,18 +5,25 @@ definitions:
       token:
         type: string
     type: object
+host: api.engin.app
 info:
   contact:
-    email: keeling.wesley@gmail.com
+    email: support@swagger.io
     name: API Support
-  title: Digital ID
+    url: http://www.swagger.io/support
+  description: This is a sample server Petstore server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Swagger Example API
   version: "1.0"
 paths:
   /signin:
     post:
       consumes:
       - application/json
-      description: Signes in and returns a token
+      description: Creates an account on the service
       parameters:
       - in: query
         name: email
@@ -39,10 +46,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/model.SignInResponse'
-      summary: Signes into acocunt
+          description: ""
       tags:
       - signin
 swagger: "2.0"

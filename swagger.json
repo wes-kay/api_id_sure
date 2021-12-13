@@ -1,18 +1,26 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "Digital ID",
+        "description": "This is a sample server Petstore server.",
+        "title": "Swagger Example API",
+        "termsOfService": "http://swagger.io/terms/",
         "contact": {
             "name": "API Support",
-            "email": "keeling.wesley@gmail.com"
+            "url": "http://www.swagger.io/support",
+            "email": "support@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         },
         "version": "1.0"
     },
+    "host": "api.engin.app",
     "basePath": "/v1",
     "paths": {
         "/signin": {
             "post": {
-                "description": "Signes in and returns a token",
+                "description": "Creates an account on the service",
                 "consumes": [
                     "application/json"
                 ],
@@ -22,7 +30,6 @@
                 "tags": [
                     "signin"
                 ],
-                "summary": "Signes into acocunt",
                 "parameters": [
                     {
                         "type": "string",
@@ -54,10 +61,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model.SignInResponse"
-                        }
+                        "description": ""
                     }
                 }
             }

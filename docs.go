@@ -17,9 +17,15 @@ var doc = `{
     "info": {
         "description": "{{escape .Description}}",
         "title": "{{.Title}}",
+        "termsOfService": "http://swagger.io/terms/",
         "contact": {
             "name": "API Support",
-            "email": "keeling.wesley@gmail.com"
+            "url": "http://www.swagger.io/support",
+            "email": "support@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         },
         "version": "{{.Version}}"
     },
@@ -28,7 +34,7 @@ var doc = `{
     "paths": {
         "/signin": {
             "post": {
-                "description": "Signes in and returns a token",
+                "description": "Creates an account on the service",
                 "consumes": [
                     "application/json"
                 ],
@@ -38,7 +44,6 @@ var doc = `{
                 "tags": [
                     "signin"
                 ],
-                "summary": "Signes into acocunt",
                 "parameters": [
                     {
                         "type": "string",
@@ -70,10 +75,7 @@ var doc = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model.SignInResponse"
-                        }
+                        "description": ""
                     }
                 }
             }
@@ -103,11 +105,11 @@ type swaggerInfo struct {
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = swaggerInfo{
 	Version:     "1.0",
-	Host:        "",
+	Host:        "api.engin.app",
 	BasePath:    "/v1",
 	Schemes:     []string{},
-	Title:       "Digital ID",
-	Description: "",
+	Title:       "Swagger Example API",
+	Description: "This is a sample server Petstore server.",
 }
 
 type s struct{}
