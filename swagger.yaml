@@ -29,6 +29,20 @@ definitions:
     - role
     - status
     type: object
+  model.AccountRole:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  model.AccountStatus:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
   model.Certificate:
     properties:
       accessed:
@@ -69,6 +83,13 @@ definitions:
         type: string
       verified:
         type: boolean
+    type: object
+  model.CertificateType:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
     type: object
   model.Course:
     properties:
@@ -308,6 +329,41 @@ paths:
       summary: Updates an account by ID
       tags:
       - account
+  /v1/admin/account/{id}:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      - description: Account ID
+        in: query
+        name: id
+        required: true
+        type: string
+      - in: formData
+        name: id
+        required: true
+        type: integer
+      - in: formData
+        name: role
+        required: true
+        type: integer
+      - in: formData
+        name: status
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: Sets a user role from the Admin dashboard
+      tags:
+      - Admin
   /v1/admin/accounts:
     get:
       consumes:
@@ -328,6 +384,50 @@ paths:
               $ref: '#/definitions/model.Account'
             type: array
       summary: Gets all accounts for Admin
+      tags:
+      - Admin
+  /v1/admin/certificate:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Certificate'
+            type: array
+      summary: Gets all certificate for Admin
+      tags:
+      - Admin
+  /v1/admin/courses:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Course'
+            type: array
+      summary: Gets all courses for Admin
       tags:
       - Admin
   /v1/certificate:
@@ -681,6 +781,78 @@ paths:
       summary: Returns all courses under account
       tags:
       - course
+  /v1/lookup/account-role:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              items:
+                $ref: '#/definitions/model.AccountRole'
+              type: array
+            type: array
+      summary: Gets account roles for form dropdown
+      tags:
+      - Lookup table
+  /v1/lookup/account-status:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              items:
+                $ref: '#/definitions/model.AccountStatus'
+              type: array
+            type: array
+      summary: Gets account status for form dropdown
+      tags:
+      - Lookup table
+  /v1/lookup/certificate-type:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              items:
+                $ref: '#/definitions/model.CertificateType'
+              type: array
+            type: array
+      summary: Gets certificate types for form dropdown
+      tags:
+      - Lookup table
   /v1/signup/welcome/{uid}:
     post:
       consumes:
