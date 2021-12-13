@@ -47,12 +47,31 @@ var doc = `{
                 "summary": "Signes into acocunt",
                 "parameters": [
                     {
-                        "description": "Sign in",
-                        "name": "account",
-                        "in": "body",
-                        "schema": {
-                            "$ref": "#/definitions/model.SignIn"
-                        }
+                        "type": "string",
+                        "name": "email",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "boolean",
+                        "name": "email_validated",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "id",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "password",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "boolean",
+                        "name": "temp",
+                        "in": "formData"
                     }
                 ],
                 "responses": {
@@ -111,30 +130,6 @@ var doc = `{
         }
     },
     "definitions": {
-        "model.SignIn": {
-            "type": "object",
-            "required": [
-                "email",
-                "password"
-            ],
-            "properties": {
-                "email": {
-                    "type": "string"
-                },
-                "email_validated": {
-                    "type": "boolean"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "password": {
-                    "type": "string"
-                },
-                "temp": {
-                    "type": "boolean"
-                }
-            }
-        },
         "model.SignInResponse": {
             "type": "object",
             "properties": {

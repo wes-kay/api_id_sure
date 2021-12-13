@@ -1,21 +1,5 @@
 basePath: /v1
 definitions:
-  model.SignIn:
-    properties:
-      email:
-        type: string
-      email_validated:
-        type: boolean
-      id:
-        type: integer
-      password:
-        type: string
-      temp:
-        type: boolean
-    required:
-    - email
-    - password
-    type: object
   model.SignInResponse:
     properties:
       token:
@@ -41,11 +25,23 @@ paths:
       - application/json
       description: Signes in and returns a token
       parameters:
-      - description: Sign in
-        in: body
-        name: account
-        schema:
-          $ref: '#/definitions/model.SignIn'
+      - in: formData
+        name: email
+        required: true
+        type: string
+      - in: formData
+        name: email_validated
+        type: boolean
+      - in: formData
+        name: id
+        type: integer
+      - in: formData
+        name: password
+        required: true
+        type: string
+      - in: formData
+        name: temp
+        type: boolean
       produces:
       - application/json
       responses:
