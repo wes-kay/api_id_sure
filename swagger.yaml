@@ -308,6 +308,134 @@ paths:
       summary: Updates an account by ID
       tags:
       - account
+  /v1/course/{id}:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      - description: Course ID
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: Delete a course by ID
+      tags:
+      - course
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      - description: Course ID
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Course'
+            type: array
+      summary: Returns all courses under account
+      tags:
+      - course
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: Creates a new course using session ID
+      tags:
+      - course
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      - description: Course ID
+        in: query
+        name: id
+        required: true
+        type: string
+      - in: formData
+        name: additional_description
+        type: string
+      - in: formData
+        name: address
+        required: true
+        type: string
+      - in: formData
+        name: certificate_name
+        required: true
+        type: string
+      - in: formData
+        name: country
+        required: true
+        type: string
+      - in: formData
+        name: course_id
+        required: true
+        type: integer
+      - in: formData
+        name: course_name
+        required: true
+        type: string
+      - in: formData
+        name: created
+        type: string
+      - in: formData
+        name: description
+        required: true
+        type: string
+      - in: formData
+        name: expire
+        required: true
+        type: integer
+      - in: formData
+        name: id
+        type: integer
+      - in: formData
+        name: image
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: Update a course by ID
+      tags:
+      - course
   /v1/signup/welcome/{uid}:
     post:
       consumes:
