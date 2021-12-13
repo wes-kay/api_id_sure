@@ -29,7 +29,7 @@ definitions:
     - role
     - status
     type: object
-  model.Certficate:
+  model.Certificate:
     properties:
       accessed:
         type: integer
@@ -108,7 +108,7 @@ definitions:
       account:
         $ref: '#/definitions/model.Account'
       certificate:
-        $ref: '#/definitions/model.Certficate'
+        $ref: '#/definitions/model.Certificate'
       course:
         $ref: '#/definitions/model.Course'
     type: object
@@ -308,6 +308,226 @@ paths:
       summary: Updates an account by ID
       tags:
       - account
+  /v1/admin/accounts:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Account'
+            type: array
+      summary: Gets all accounts for Admin
+      tags:
+      - Admin
+  /v1/certificate:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: Creates a certificate by session ID
+      tags:
+      - certificate
+  /v1/certificate/{id}:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      - description: Certificate ID
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: Deletes a certificate by ID
+      tags:
+      - certificate
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      - description: Certificate ID
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Certificate'
+      summary: Gets certificate by ID
+      tags:
+      - certificate
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      - description: Certificate ID
+        in: query
+        name: id
+        required: true
+        type: string
+      - in: formData
+        name: accessed
+        type: integer
+      - in: formData
+        name: accountID
+        type: integer
+      - in: formData
+        name: activated
+        type: boolean
+      - in: formData
+        name: completed
+        type: boolean
+      - in: formData
+        name: courseID
+        type: integer
+      - in: formData
+        name: created
+        type: string
+      - in: formData
+        name: dateOfBirth
+        type: string
+      - in: formData
+        name: experience
+        type: integer
+      - in: formData
+        name: id
+        type: integer
+      - in: formData
+        name: issued
+        type: string
+      - in: formData
+        name: kin
+        type: string
+      - in: formData
+        name: licence
+        type: string
+      - in: formData
+        name: nationality
+        type: string
+      - in: formData
+        name: passport
+        type: string
+      - in: formData
+        name: rank
+        type: string
+      - in: formData
+        name: shipExpereince
+        type: string
+      - in: formData
+        name: type
+        type: integer
+      - in: formData
+        name: uid
+        type: string
+      - in: formData
+        name: verified
+        type: boolean
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: Updates a certificate by ID
+      tags:
+      - certificate
+  /v1/certificates/{id}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      - description: Account ID
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Certificate'
+            type: array
+      summary: Gets all certificate by account ID
+      tags:
+      - certificate
+  /v1/certificates/course/{id}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      - description: Account ID
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Certificate'
+            type: array
+      summary: Gets all certificate by course ID
+      tags:
+      - certificate
   /v1/course/{id}:
     delete:
       consumes:
@@ -351,10 +571,8 @@ paths:
         "200":
           description: OK
           schema:
-            items:
-              $ref: '#/definitions/model.Course'
-            type: array
-      summary: Returns all courses under account
+            $ref: '#/definitions/model.Course'
+      summary: Gets a course by ID
       tags:
       - course
     post:
@@ -434,6 +652,33 @@ paths:
         "200":
           description: ""
       summary: Update a course by ID
+      tags:
+      - course
+  /v1/courses/{id}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      - description: Course ID
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Course'
+            type: array
+      summary: Returns all courses under account
       tags:
       - course
   /v1/signup/welcome/{uid}:

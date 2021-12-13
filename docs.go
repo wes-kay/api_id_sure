@@ -309,6 +309,349 @@ var doc = `{
                 }
             }
         },
+        "/v1/admin/accounts": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Gets all accounts for Admin",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "Auth",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.Account"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/certificate": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "certificate"
+                ],
+                "summary": "Creates a certificate by session ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "Auth",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/v1/certificate/{id}": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "certificate"
+                ],
+                "summary": "Gets certificate by ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "Auth",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Certificate ID",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.Certificate"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "certificate"
+                ],
+                "summary": "Updates a certificate by ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "Auth",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Certificate ID",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "name": "accessed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "accountID",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "name": "activated",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "name": "completed",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "courseID",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "created",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "dateOfBirth",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "experience",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "id",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "issued",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "kin",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "licence",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "nationality",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "passport",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "rank",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "shipExpereince",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "type",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "uid",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "boolean",
+                        "name": "verified",
+                        "in": "formData"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            },
+            "delete": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "certificate"
+                ],
+                "summary": "Deletes a certificate by ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "Auth",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Certificate ID",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/v1/certificates/course/{id}": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "certificate"
+                ],
+                "summary": "Gets all certificate by course ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "Auth",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Account ID",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.Certificate"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/certificates/{id}": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "certificate"
+                ],
+                "summary": "Gets all certificate by account ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "Auth",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Account ID",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.Certificate"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/v1/course/{id}": {
             "get": {
                 "consumes": [
@@ -320,7 +663,7 @@ var doc = `{
                 "tags": [
                     "course"
                 ],
-                "summary": "Returns all courses under account",
+                "summary": "Gets a course by ID",
                 "parameters": [
                     {
                         "type": "string",
@@ -341,10 +684,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/model.Course"
-                            }
+                            "$ref": "#/definitions/model.Course"
                         }
                     }
                 }
@@ -504,6 +844,47 @@ var doc = `{
                 }
             }
         },
+        "/v1/courses/{id}": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "course"
+                ],
+                "summary": "Returns all courses under account",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "Auth",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Course ID",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.Course"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/v1/signup/welcome/{uid}": {
             "post": {
                 "consumes": [
@@ -606,7 +987,7 @@ var doc = `{
                 }
             }
         },
-        "model.Certficate": {
+        "model.Certificate": {
             "type": "object",
             "properties": {
                 "accessed": {
@@ -722,7 +1103,7 @@ var doc = `{
                     "$ref": "#/definitions/model.Account"
                 },
                 "certificate": {
-                    "$ref": "#/definitions/model.Certficate"
+                    "$ref": "#/definitions/model.Certificate"
                 },
                 "course": {
                     "$ref": "#/definitions/model.Course"
