@@ -152,7 +152,7 @@ var doc = `{
             }
         },
         "/v1/view/certificate/{uid}": {
-            "post": {
+            "get": {
                 "description": "Loads certificate from uid",
                 "consumes": [
                     "application/json"
@@ -161,7 +161,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "verify"
+                    "get"
                 ],
                 "parameters": [
                     {

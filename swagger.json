@@ -136,7 +136,7 @@
             }
         },
         "/v1/view/certificate/{uid}": {
-            "post": {
+            "get": {
                 "description": "Loads certificate from uid",
                 "consumes": [
                     "application/json"
@@ -145,7 +145,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "verify"
+                    "get"
                 ],
                 "parameters": [
                     {

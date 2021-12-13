@@ -205,7 +205,7 @@ paths:
       tags:
       - verify
   /v1/view/certificate/{uid}:
-    post:
+    get:
       consumes:
       - application/json
       description: Loads certificate from uid
@@ -223,5 +223,5 @@ paths:
           schema:
             $ref: '#/definitions/model.CourseCertificate'
       tags:
-      - verify
+      - get
 swagger: "2.0"
