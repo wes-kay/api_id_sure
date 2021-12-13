@@ -29,7 +29,6 @@ var doc = `{
     "paths": {
         "/signin": {
             "post": {
-                "description": "Signes in and returns a token",
                 "consumes": [
                     "application/json"
                 ],
@@ -37,9 +36,9 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "signin"
+                    "account"
                 ],
-                "summary": "Signes into acocunt",
+                "summary": "Sign Into Account",
                 "parameters": [
                     {
                         "type": "string",
@@ -81,7 +80,6 @@ var doc = `{
         },
         "/signup": {
             "post": {
-                "description": "Creates an account on the service",
                 "consumes": [
                     "application/json"
                 ],
@@ -89,8 +87,9 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "signup"
+                    "account"
                 ],
+                "summary": "Creates an account on the service",
                 "parameters": [
                     {
                         "type": "string",
@@ -125,7 +124,6 @@ var doc = `{
         },
         "/v1/signup/welcome/{uid}": {
             "post": {
-                "description": "Verifies an email with a UID sent to the account email",
                 "consumes": [
                     "application/json"
                 ],
@@ -135,6 +133,7 @@ var doc = `{
                 "tags": [
                     "verify"
                 ],
+                "summary": "Verifies an email with a UID sent to the account email",
                 "parameters": [
                     {
                         "type": "string",
@@ -161,7 +160,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "get"
+                    "certificate"
                 ],
                 "parameters": [
                     {

@@ -129,7 +129,6 @@ paths:
     post:
       consumes:
       - application/json
-      description: Signes in and returns a token
       parameters:
       - in: formData
         name: email
@@ -155,14 +154,13 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/model.SignInResponse'
-      summary: Signes into acocunt
+      summary: Sign Into Account
       tags:
-      - signin
+      - account
   /signup:
     post:
       consumes:
       - application/json
-      description: Creates an account on the service
       parameters:
       - in: query
         name: email
@@ -184,13 +182,13 @@ paths:
       responses:
         "200":
           description: ""
+      summary: Creates an account on the service
       tags:
-      - signup
+      - account
   /v1/signup/welcome/{uid}:
     post:
       consumes:
       - application/json
-      description: Verifies an email with a UID sent to the account email
       parameters:
       - description: uid from email
         in: query
@@ -202,6 +200,7 @@ paths:
       responses:
         "200":
           description: ""
+      summary: Verifies an email with a UID sent to the account email
       tags:
       - verify
   /v1/view/certificate/{uid}:
@@ -223,5 +222,5 @@ paths:
           schema:
             $ref: '#/definitions/model.CourseCertificate'
       tags:
-      - get
+      - certificate
 swagger: "2.0"
