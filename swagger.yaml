@@ -80,4 +80,22 @@ paths:
           description: ""
       tags:
       - signup
+  /v1/signup/welcome/{uid}:
+    post:
+      consumes:
+      - application/json
+      description: Verifies an email with a UID sent to the account email
+      parameters:
+      - description: uid from email
+        in: query
+        name: string
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      tags:
+      - verify
 swagger: "2.0"

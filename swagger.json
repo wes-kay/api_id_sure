@@ -113,6 +113,34 @@
                     }
                 }
             }
+        },
+        "/v1/signup/welcome/{uid}": {
+            "post": {
+                "description": "Verifies an email with a UID sent to the account email",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "verify"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "uid from email",
+                        "name": "string",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
         }
     },
     "definitions": {
