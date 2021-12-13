@@ -34,7 +34,7 @@ var doc = `{
     "paths": {
         "/signin": {
             "post": {
-                "description": "Creates an account on the service",
+                "description": "Signes in and returns a token",
                 "consumes": [
                     "application/json"
                 ],
@@ -44,6 +44,39 @@ var doc = `{
                 "tags": [
                     "signin"
                 ],
+                "summary": "Signes into acocunt",
+                "parameters": [
+                    {
+                        "description": "Sign in",
+                        "name": "account",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/model.SignIn"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.SignInResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/signup": {
+            "post": {
+                "description": "Creates an account on the service",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "signup"
+                ],
                 "parameters": [
                     {
                         "type": "string",
@@ -52,18 +85,14 @@ var doc = `{
                         "required": true
                     },
                     {
-                        "type": "boolean",
-                        "name": "email_validated",
-                        "in": "query"
-                    },
-                    {
-                        "type": "integer",
-                        "name": "id",
-                        "in": "query"
+                        "type": "string",
+                        "name": "password",
+                        "in": "query",
+                        "required": true
                     },
                     {
                         "type": "string",
-                        "name": "password",
+                        "name": "passwordconfirm",
                         "in": "query",
                         "required": true
                     },
@@ -82,6 +111,30 @@ var doc = `{
         }
     },
     "definitions": {
+        "model.SignIn": {
+            "type": "object",
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "email_validated": {
+                    "type": "boolean"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "temp": {
+                    "type": "boolean"
+                }
+            }
+        },
         "model.SignInResponse": {
             "type": "object",
             "properties": {

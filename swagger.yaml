@@ -1,5 +1,21 @@
 basePath: /v1
 definitions:
+  model.SignIn:
+    properties:
+      email:
+        type: string
+      email_validated:
+        type: boolean
+      id:
+        type: integer
+      password:
+        type: string
+      temp:
+        type: boolean
+    required:
+    - email
+    - password
+    type: object
   model.SignInResponse:
     properties:
       token:
@@ -23,6 +39,27 @@ paths:
     post:
       consumes:
       - application/json
+      description: Signes in and returns a token
+      parameters:
+      - description: Sign in
+        in: body
+        name: account
+        schema:
+          $ref: '#/definitions/model.SignIn'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.SignInResponse'
+      summary: Signes into acocunt
+      tags:
+      - signin
+  /signup:
+    post:
+      consumes:
+      - application/json
       description: Creates an account on the service
       parameters:
       - in: query
@@ -30,13 +67,11 @@ paths:
         required: true
         type: string
       - in: query
-        name: email_validated
-        type: boolean
-      - in: query
-        name: id
-        type: integer
-      - in: query
         name: password
+        required: true
+        type: string
+      - in: query
+        name: passwordconfirm
         required: true
         type: string
       - in: query
@@ -48,5 +83,5 @@ paths:
         "200":
           description: ""
       tags:
-      - signin
+      - signup
 swagger: "2.0"
