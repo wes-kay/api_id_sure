@@ -72,7 +72,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.Account"
+                            "$ref": "#/definitions/model.SignInResponse"
                         }
                     }
                 }
@@ -80,44 +80,11 @@ var doc = `{
         }
     },
     "definitions": {
-        "model.Account": {
+        "model.SignInResponse": {
             "type": "object",
-            "required": [
-                "email",
-                "email_validated",
-                "id",
-                "name",
-                "phone",
-                "role",
-                "status"
-            ],
             "properties": {
-                "email": {
+                "token": {
                     "type": "string"
-                },
-                "email_validated": {
-                    "type": "boolean"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "image": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "phone": {
-                    "type": "integer"
-                },
-                "role": {
-                    "type": "integer"
-                },
-                "status": {
-                    "type": "integer"
-                },
-                "temp": {
-                    "type": "boolean"
                 }
             }
         }
