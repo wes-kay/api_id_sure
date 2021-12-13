@@ -185,6 +185,26 @@ paths:
       summary: Creates an account on the service
       tags:
       - account
+  /v1/account:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.CourseCertificate'
+      summary: Get's a account using the session
+      tags:
+      - account
   /v1/signup/welcome/{uid}:
     post:
       consumes:
@@ -207,7 +227,6 @@ paths:
     get:
       consumes:
       - application/json
-      description: Loads certificate from uid
       parameters:
       - description: uid from url
         in: query
@@ -221,6 +240,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/model.CourseCertificate'
+      summary: Loads certificate from uid
       tags:
       - certificate
 swagger: "2.0"

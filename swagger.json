@@ -106,6 +106,37 @@
                 }
             }
         },
+        "/v1/account": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "account"
+                ],
+                "summary": "Get's a account using the session",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "Auth",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.CourseCertificate"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/signup/welcome/{uid}": {
             "post": {
                 "consumes": [
@@ -136,7 +167,6 @@
         },
         "/v1/view/certificate/{uid}": {
             "get": {
-                "description": "Loads certificate from uid",
                 "consumes": [
                     "application/json"
                 ],
@@ -146,6 +176,7 @@
                 "tags": [
                     "certificate"
                 ],
+                "summary": "Loads certificate from uid",
                 "parameters": [
                     {
                         "type": "string",
