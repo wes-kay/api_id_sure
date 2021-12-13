@@ -185,7 +185,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model.CourseCertificate"
+                            "$ref": "#/definitions/model.Account"
                         }
                     }
                 }

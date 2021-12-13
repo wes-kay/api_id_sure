@@ -226,7 +226,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model.CourseCertificate'
+            $ref: '#/definitions/model.Account'
       summary: Gets an account by id
       tags:
       - account
