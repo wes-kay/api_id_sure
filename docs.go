@@ -150,9 +150,204 @@ var doc = `{
                     }
                 }
             }
+        },
+        "/v1/view/certificate/{uid}": {
+            "post": {
+                "description": "Loads certificate from uid",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "verify"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "uid from url",
+                        "name": "string",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.CourseCertificate"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
+        "model.Account": {
+            "type": "object",
+            "required": [
+                "email",
+                "email_validated",
+                "id",
+                "name",
+                "phone",
+                "role",
+                "status"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "email_validated": {
+                    "type": "boolean"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "integer"
+                },
+                "role": {
+                    "type": "integer"
+                },
+                "status": {
+                    "type": "integer"
+                },
+                "temp": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "model.Certficate": {
+            "type": "object",
+            "properties": {
+                "accessed": {
+                    "type": "integer"
+                },
+                "accountID": {
+                    "type": "integer"
+                },
+                "activated": {
+                    "type": "boolean"
+                },
+                "completed": {
+                    "type": "boolean"
+                },
+                "courseID": {
+                    "type": "integer"
+                },
+                "created": {
+                    "type": "string"
+                },
+                "dateOfBirth": {
+                    "type": "string"
+                },
+                "experience": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "issued": {
+                    "type": "string"
+                },
+                "kin": {
+                    "type": "string"
+                },
+                "licence": {
+                    "type": "string"
+                },
+                "nationality": {
+                    "type": "string"
+                },
+                "passport": {
+                    "type": "string"
+                },
+                "rank": {
+                    "type": "string"
+                },
+                "shipExpereince": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "integer"
+                },
+                "uid": {
+                    "type": "string"
+                },
+                "verified": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "model.Course": {
+            "type": "object",
+            "required": [
+                "address",
+                "certificate_name",
+                "country",
+                "course_id",
+                "course_name",
+                "description",
+                "expire"
+            ],
+            "properties": {
+                "additional_description": {
+                    "type": "string"
+                },
+                "address": {
+                    "type": "string"
+                },
+                "certificate_name": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "course_id": {
+                    "type": "integer"
+                },
+                "course_name": {
+                    "type": "string"
+                },
+                "created": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "expire": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "image": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.CourseCertificate": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "$ref": "#/definitions/model.Account"
+                },
+                "certificate": {
+                    "$ref": "#/definitions/model.Certficate"
+                },
+                "course": {
+                    "$ref": "#/definitions/model.Course"
+                }
+            }
+        },
         "model.SignInResponse": {
             "type": "object",
             "properties": {
