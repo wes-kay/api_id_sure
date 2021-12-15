@@ -22,12 +22,6 @@ definitions:
         type: boolean
     required:
     - email
-    - email_validated
-    - id
-    - name
-    - phone
-    - role
-    - status
     type: object
   model.AccountRole:
     properties:
@@ -293,30 +287,24 @@ paths:
         type: string
       - in: formData
         name: email_validated
-        required: true
         type: boolean
       - in: formData
         name: id
-        required: true
         type: integer
       - in: formData
         name: image
         type: string
       - in: formData
         name: name
-        required: true
         type: string
       - in: formData
         name: phone
-        required: true
         type: integer
       - in: formData
         name: role
-        required: true
         type: integer
       - in: formData
         name: status
-        required: true
         type: integer
       - in: formData
         name: temp
@@ -853,7 +841,7 @@ paths:
       summary: Gets certificate types for form dropdown
       tags:
       - Lookup table
-  /v1/signup/welcome/{uid}:
+  /v1/signup/{uid}:
     post:
       consumes:
       - application/json

@@ -225,14 +225,12 @@ var doc = `{
                     {
                         "type": "boolean",
                         "name": "email_validated",
-                        "in": "formData",
-                        "required": true
+                        "in": "formData"
                     },
                     {
                         "type": "integer",
                         "name": "id",
-                        "in": "formData",
-                        "required": true
+                        "in": "formData"
                     },
                     {
                         "type": "string",
@@ -242,26 +240,22 @@ var doc = `{
                     {
                         "type": "string",
                         "name": "name",
-                        "in": "formData",
-                        "required": true
+                        "in": "formData"
                     },
                     {
                         "type": "integer",
                         "name": "phone",
-                        "in": "formData",
-                        "required": true
+                        "in": "formData"
                     },
                     {
                         "type": "integer",
                         "name": "role",
-                        "in": "formData",
-                        "required": true
+                        "in": "formData"
                     },
                     {
                         "type": "integer",
                         "name": "status",
-                        "in": "formData",
-                        "required": true
+                        "in": "formData"
                     },
                     {
                         "type": "boolean",
@@ -1117,7 +1111,7 @@ var doc = `{
                 }
             }
         },
-        "/v1/signup/welcome/{uid}": {
+        "/v1/signup/{uid}": {
             "post": {
                 "consumes": [
                     "application/json"
@@ -1181,13 +1175,7 @@ var doc = `{
         "model.Account": {
             "type": "object",
             "required": [
-                "email",
-                "email_validated",
-                "id",
-                "name",
-                "phone",
-                "role",
-                "status"
+                "email"
             ],
             "properties": {
                 "email": {
