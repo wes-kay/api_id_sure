@@ -693,11 +693,6 @@ var doc = `{
                     },
                     {
                         "type": "string",
-                        "name": "passport",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "string",
                         "name": "rank",
                         "in": "formData"
                     },
@@ -1490,9 +1485,6 @@ var doc = `{
                     "type": "string"
                 },
                 "nationality": {
-                    "type": "string"
-                },
-                "passport": {
                     "type": "string"
                 },
                 "rank": {

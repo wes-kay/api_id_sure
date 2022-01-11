@@ -75,8 +75,6 @@ definitions:
         type: string
       nationality:
         type: string
-      passport:
-        type: string
       rank:
         type: string
       shipExpereince:
@@ -628,9 +626,6 @@ paths:
         type: string
       - in: formData
         name: nationality
-        type: string
-      - in: formData
-        name: passport
         type: string
       - in: formData
         name: rank
