@@ -41,6 +41,8 @@ var doc = `{
                 "summary": "Sign Into Account",
                 "parameters": [
                     {
+                        "maxLength": 320,
+                        "minLength": 4,
                         "type": "string",
                         "name": "email",
                         "in": "formData",
@@ -57,10 +59,17 @@ var doc = `{
                         "in": "formData"
                     },
                     {
+                        "maxLength": 156,
+                        "minLength": 8,
                         "type": "string",
                         "name": "password",
                         "in": "formData",
                         "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "name": "role",
+                        "in": "formData"
                     },
                     {
                         "type": "boolean",
@@ -92,18 +101,24 @@ var doc = `{
                 "summary": "Creates an account on the service",
                 "parameters": [
                     {
+                        "maxLength": 320,
+                        "minLength": 4,
                         "type": "string",
                         "name": "email",
                         "in": "formData",
                         "required": true
                     },
                     {
+                        "maxLength": 156,
+                        "minLength": 8,
                         "type": "string",
                         "name": "password",
                         "in": "formData",
                         "required": true
                     },
                     {
+                        "maxLength": 156,
+                        "minLength": 8,
                         "type": "string",
                         "name": "passwordconfirm",
                         "in": "formData",
@@ -218,6 +233,21 @@ var doc = `{
                     },
                     {
                         "type": "string",
+                        "name": "address",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "country",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "date_of_birth",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
                         "name": "email",
                         "in": "formData",
                         "required": true
@@ -238,21 +268,30 @@ var doc = `{
                         "in": "formData"
                     },
                     {
+                        "maxLength": 100,
                         "type": "string",
                         "name": "name",
                         "in": "formData"
                     },
                     {
+                        "type": "string",
+                        "name": "passport",
+                        "in": "formData"
+                    },
+                    {
+                        "minimum": 0,
                         "type": "integer",
                         "name": "phone",
                         "in": "formData"
                     },
                     {
+                        "minimum": 0,
                         "type": "integer",
                         "name": "role",
                         "in": "formData"
                     },
                     {
+                        "minimum": 0,
                         "type": "integer",
                         "name": "status",
                         "in": "formData"
@@ -337,12 +376,14 @@ var doc = `{
                         "required": true
                     },
                     {
+                        "minimum": 0,
                         "type": "integer",
                         "name": "role",
                         "in": "formData",
                         "required": true
                     },
                     {
+                        "minimum": 0,
                         "type": "integer",
                         "name": "status",
                         "in": "formData",
@@ -418,6 +459,47 @@ var doc = `{
                             "type": "array",
                             "items": {
                                 "$ref": "#/definitions/model.Certificate"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/admin/course/{id}/analytics": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Gets all courses for Admin analytics",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "Auth",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Account ID",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/model.MontlyCourseAnalytics"
                             }
                         }
                     }
@@ -580,11 +662,6 @@ var doc = `{
                         "in": "formData"
                     },
                     {
-                        "type": "string",
-                        "name": "dateOfBirth",
-                        "in": "formData"
-                    },
-                    {
                         "type": "integer",
                         "name": "experience",
                         "in": "formData"
@@ -637,6 +714,11 @@ var doc = `{
                     {
                         "type": "string",
                         "name": "uid",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "updated",
                         "in": "formData"
                     },
                     {
@@ -831,35 +913,22 @@ var doc = `{
                         "required": true
                     },
                     {
+                        "maxLength": 500,
                         "type": "string",
                         "name": "additional_description",
                         "in": "formData"
                     },
                     {
-                        "type": "string",
-                        "name": "address",
-                        "in": "formData",
-                        "required": true
-                    },
-                    {
+                        "maxLength": 100,
+                        "minLength": 3,
                         "type": "string",
                         "name": "certificate_name",
                         "in": "formData",
                         "required": true
                     },
                     {
-                        "type": "string",
-                        "name": "country",
-                        "in": "formData",
-                        "required": true
-                    },
-                    {
-                        "type": "integer",
-                        "name": "course_id",
-                        "in": "formData",
-                        "required": true
-                    },
-                    {
+                        "maxLength": 100,
+                        "minLength": 3,
                         "type": "string",
                         "name": "course_name",
                         "in": "formData",
@@ -871,21 +940,25 @@ var doc = `{
                         "in": "formData"
                     },
                     {
+                        "maxLength": 500,
                         "type": "string",
                         "name": "description",
                         "in": "formData",
                         "required": true
                     },
                     {
+                        "minimum": 0,
                         "type": "integer",
                         "name": "expire",
                         "in": "formData",
                         "required": true
                     },
                     {
+                        "minimum": 0,
                         "type": "integer",
-                        "name": "id",
-                        "in": "formData"
+                        "name": "fk_course_category_id",
+                        "in": "formData",
+                        "required": true
                     },
                     {
                         "type": "string",
@@ -917,6 +990,59 @@ var doc = `{
                         "name": "Auth",
                         "in": "header",
                         "required": true
+                    },
+                    {
+                        "maxLength": 500,
+                        "type": "string",
+                        "name": "additional_description",
+                        "in": "formData"
+                    },
+                    {
+                        "maxLength": 100,
+                        "minLength": 3,
+                        "type": "string",
+                        "name": "certificate_name",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "maxLength": 100,
+                        "minLength": 3,
+                        "type": "string",
+                        "name": "course_name",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "created",
+                        "in": "formData"
+                    },
+                    {
+                        "maxLength": 500,
+                        "type": "string",
+                        "name": "description",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "minimum": 0,
+                        "type": "integer",
+                        "name": "expire",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "minimum": 0,
+                        "type": "integer",
+                        "name": "fk_course_category_id",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "image",
+                        "in": "formData"
                     }
                 ],
                 "responses": {
@@ -995,6 +1121,44 @@ var doc = `{
                             "items": {
                                 "$ref": "#/definitions/model.Course"
                             }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/download/certificate/{uid}": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "certificate"
+                ],
+                "summary": "Loads certificate from uid",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "Auth",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "uid from url",
+                        "name": "uid",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.CourseCertificate"
                         }
                     }
                 }
@@ -1111,6 +1275,43 @@ var doc = `{
                 }
             }
         },
+        "/v1/lookup/course-categories": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Lookup table"
+                ],
+                "summary": "Gets course category for form dropdown",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "Auth",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/model.CourseCategory"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/v1/signup/{uid}": {
             "post": {
                 "consumes": [
@@ -1154,6 +1355,13 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
+                        "description": "Authentication header",
+                        "name": "Auth",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
                         "description": "uid from url",
                         "name": "uid",
                         "in": "query",
@@ -1178,6 +1386,15 @@ var doc = `{
                 "email"
             ],
             "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "date_of_birth": {
+                    "type": "string"
+                },
                 "email": {
                     "type": "string"
                 },
@@ -1191,16 +1408,23 @@ var doc = `{
                     "type": "string"
                 },
                 "name": {
+                    "type": "string",
+                    "maxLength": 100
+                },
+                "passport": {
                     "type": "string"
                 },
                 "phone": {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": 0
                 },
                 "role": {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": 0
                 },
                 "status": {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": 0
                 },
                 "temp": {
                     "type": "boolean"
@@ -1250,9 +1474,6 @@ var doc = `{
                 "created": {
                     "type": "string"
                 },
-                "dateOfBirth": {
-                    "type": "string"
-                },
                 "experience": {
                     "type": "integer"
                 },
@@ -1286,6 +1507,9 @@ var doc = `{
                 "uid": {
                     "type": "string"
                 },
+                "updated": {
+                    "type": "string"
+                },
                 "verified": {
                     "type": "boolean"
                 }
@@ -1305,46 +1529,63 @@ var doc = `{
         "model.Course": {
             "type": "object",
             "required": [
-                "address",
                 "certificate_name",
-                "country",
-                "course_id",
                 "course_name",
                 "description",
-                "expire"
+                "expire",
+                "fk_course_category_id"
             ],
             "properties": {
                 "additional_description": {
-                    "type": "string"
-                },
-                "address": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 500
                 },
                 "certificate_name": {
-                    "type": "string"
-                },
-                "country": {
-                    "type": "string"
-                },
-                "course_id": {
-                    "type": "integer"
+                    "type": "string",
+                    "maxLength": 100,
+                    "minLength": 3
                 },
                 "course_name": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 100,
+                    "minLength": 3
                 },
                 "created": {
                     "type": "string"
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 500
                 },
                 "expire": {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "fk_course_category_id": {
+                    "type": "integer",
+                    "minimum": 0
                 },
                 "id": {
                     "type": "integer"
                 },
                 "image": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "uid": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.CourseCategory": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
                     "type": "string"
                 }
             }
@@ -1352,14 +1593,34 @@ var doc = `{
         "model.CourseCertificate": {
             "type": "object",
             "properties": {
-                "account": {
-                    "$ref": "#/definitions/model.Account"
-                },
                 "certificate": {
                     "$ref": "#/definitions/model.Certificate"
                 },
                 "course": {
                     "$ref": "#/definitions/model.Course"
+                },
+                "providerAccount": {
+                    "$ref": "#/definitions/model.Account"
+                },
+                "userAccount": {
+                    "$ref": "#/definitions/model.Account"
+                }
+            }
+        },
+        "model.MontlyCourseAnalytics": {
+            "type": "object",
+            "properties": {
+                "edits": {
+                    "type": "integer"
+                },
+                "issued": {
+                    "type": "integer"
+                },
+                "revoked": {
+                    "type": "integer"
+                },
+                "validated": {
+                    "type": "integer"
                 }
             }
         },

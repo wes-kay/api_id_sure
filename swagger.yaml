@@ -2,6 +2,12 @@ basePath: /v1
 definitions:
   model.Account:
     properties:
+      address:
+        type: string
+      country:
+        type: string
+      date_of_birth:
+        type: string
       email:
         type: string
       email_validated:
@@ -11,12 +17,18 @@ definitions:
       image:
         type: string
       name:
+        maxLength: 100
+        type: string
+      passport:
         type: string
       phone:
+        minimum: 0
         type: integer
       role:
+        minimum: 0
         type: integer
       status:
+        minimum: 0
         type: integer
       temp:
         type: boolean
@@ -51,8 +63,6 @@ definitions:
         type: integer
       created:
         type: string
-      dateOfBirth:
-        type: string
       experience:
         type: integer
       id:
@@ -75,6 +85,8 @@ definitions:
         type: integer
       uid:
         type: string
+      updated:
+        type: string
       verified:
         type: boolean
     type: object
@@ -88,44 +100,70 @@ definitions:
   model.Course:
     properties:
       additional_description:
-        type: string
-      address:
+        maxLength: 500
         type: string
       certificate_name:
+        maxLength: 100
+        minLength: 3
         type: string
-      country:
-        type: string
-      course_id:
-        type: integer
       course_name:
+        maxLength: 100
+        minLength: 3
         type: string
       created:
         type: string
       description:
+        maxLength: 500
         type: string
       expire:
+        minimum: 0
+        type: integer
+      fk_course_category_id:
+        minimum: 0
         type: integer
       id:
         type: integer
       image:
         type: string
+      name:
+        type: string
+      uid:
+        type: string
     required:
-    - address
     - certificate_name
-    - country
-    - course_id
     - course_name
     - description
     - expire
+    - fk_course_category_id
+    type: object
+  model.CourseCategory:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
     type: object
   model.CourseCertificate:
     properties:
-      account:
-        $ref: '#/definitions/model.Account'
       certificate:
         $ref: '#/definitions/model.Certificate'
       course:
         $ref: '#/definitions/model.Course'
+      providerAccount:
+        $ref: '#/definitions/model.Account'
+      userAccount:
+        $ref: '#/definitions/model.Account'
+    type: object
+  model.MontlyCourseAnalytics:
+    properties:
+      edits:
+        type: integer
+      issued:
+        type: integer
+      revoked:
+        type: integer
+      validated:
+        type: integer
     type: object
   model.SignInResponse:
     properties:
@@ -146,6 +184,8 @@ paths:
       - application/json
       parameters:
       - in: formData
+        maxLength: 320
+        minLength: 4
         name: email
         required: true
         type: string
@@ -156,9 +196,14 @@ paths:
         name: id
         type: integer
       - in: formData
+        maxLength: 156
+        minLength: 8
         name: password
         required: true
         type: string
+      - in: formData
+        name: role
+        type: integer
       - in: formData
         name: temp
         type: boolean
@@ -178,14 +223,20 @@ paths:
       - application/json
       parameters:
       - in: formData
+        maxLength: 320
+        minLength: 4
         name: email
         required: true
         type: string
       - in: formData
+        maxLength: 156
+        minLength: 8
         name: password
         required: true
         type: string
       - in: formData
+        maxLength: 156
+        minLength: 8
         name: passwordconfirm
         required: true
         type: string
@@ -282,6 +333,15 @@ paths:
         required: true
         type: string
       - in: formData
+        name: address
+        type: string
+      - in: formData
+        name: country
+        type: string
+      - in: formData
+        name: date_of_birth
+        type: string
+      - in: formData
         name: email
         required: true
         type: string
@@ -295,15 +355,22 @@ paths:
         name: image
         type: string
       - in: formData
+        maxLength: 100
         name: name
         type: string
       - in: formData
+        name: passport
+        type: string
+      - in: formData
+        minimum: 0
         name: phone
         type: integer
       - in: formData
+        minimum: 0
         name: role
         type: integer
       - in: formData
+        minimum: 0
         name: status
         type: integer
       - in: formData
@@ -337,10 +404,12 @@ paths:
         required: true
         type: integer
       - in: formData
+        minimum: 0
         name: role
         required: true
         type: integer
       - in: formData
+        minimum: 0
         name: status
         required: true
         type: integer
@@ -394,6 +463,33 @@ paths:
               $ref: '#/definitions/model.Certificate'
             type: array
       summary: Gets all certificate for Admin
+      tags:
+      - Admin
+  /v1/admin/course/{id}/analytics:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      - description: Account ID
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.MontlyCourseAnalytics'
+            type: array
+      summary: Gets all courses for Admin analytics
       tags:
       - Admin
   /v1/admin/courses:
@@ -516,9 +612,6 @@ paths:
         name: created
         type: string
       - in: formData
-        name: dateOfBirth
-        type: string
-      - in: formData
         name: experience
         type: integer
       - in: formData
@@ -550,6 +643,9 @@ paths:
         type: integer
       - in: formData
         name: uid
+        type: string
+      - in: formData
+        name: updated
         type: string
       - in: formData
         name: verified
@@ -672,6 +768,43 @@ paths:
         name: Auth
         required: true
         type: string
+      - in: formData
+        maxLength: 500
+        name: additional_description
+        type: string
+      - in: formData
+        maxLength: 100
+        minLength: 3
+        name: certificate_name
+        required: true
+        type: string
+      - in: formData
+        maxLength: 100
+        minLength: 3
+        name: course_name
+        required: true
+        type: string
+      - in: formData
+        name: created
+        type: string
+      - in: formData
+        maxLength: 500
+        name: description
+        required: true
+        type: string
+      - in: formData
+        minimum: 0
+        name: expire
+        required: true
+        type: integer
+      - in: formData
+        minimum: 0
+        name: fk_course_category_id
+        required: true
+        type: integer
+      - in: formData
+        name: image
+        type: string
       produces:
       - application/json
       responses:
@@ -695,25 +828,18 @@ paths:
         required: true
         type: string
       - in: formData
+        maxLength: 500
         name: additional_description
         type: string
       - in: formData
-        name: address
-        required: true
-        type: string
-      - in: formData
+        maxLength: 100
+        minLength: 3
         name: certificate_name
         required: true
         type: string
       - in: formData
-        name: country
-        required: true
-        type: string
-      - in: formData
-        name: course_id
-        required: true
-        type: integer
-      - in: formData
+        maxLength: 100
+        minLength: 3
         name: course_name
         required: true
         type: string
@@ -721,15 +847,19 @@ paths:
         name: created
         type: string
       - in: formData
+        maxLength: 500
         name: description
         required: true
         type: string
       - in: formData
+        minimum: 0
         name: expire
         required: true
         type: integer
       - in: formData
-        name: id
+        minimum: 0
+        name: fk_course_category_id
+        required: true
         type: integer
       - in: formData
         name: image
@@ -769,6 +899,31 @@ paths:
       summary: Returns all courses under account
       tags:
       - course
+  /v1/download/certificate/{uid}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      - description: uid from url
+        in: query
+        name: uid
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.CourseCertificate'
+      summary: Loads certificate from uid
+      tags:
+      - certificate
   /v1/lookup/account-role:
     get:
       consumes:
@@ -841,6 +996,30 @@ paths:
       summary: Gets certificate types for form dropdown
       tags:
       - Lookup table
+  /v1/lookup/course-categories:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              items:
+                $ref: '#/definitions/model.CourseCategory'
+              type: array
+            type: array
+      summary: Gets course category for form dropdown
+      tags:
+      - Lookup table
   /v1/signup/{uid}:
     post:
       consumes:
@@ -864,6 +1043,11 @@ paths:
       consumes:
       - application/json
       parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
       - description: uid from url
         in: query
         name: uid
