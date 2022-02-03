@@ -6,26 +6,43 @@ definitions:
         type: string
       country:
         type: string
+      created:
+        type: string
       date_of_birth:
         type: string
       email:
         type: string
       email_validated:
         type: boolean
+      experience:
+        type: integer
       id:
         type: integer
-      image:
+      kin:
+        type: string
+      licence:
         type: string
       name:
         maxLength: 100
         type: string
+      nationality:
+        type: string
       passport:
         type: string
       phone:
-        minimum: 0
-        type: integer
+        type: string
+      profile_completed:
+        type: boolean
+      profile_image:
+        type: string
+      profile_validated:
+        type: boolean
+      rank:
+        type: string
       role:
         minimum: 0
+        type: integer
+      ship_experience:
         type: integer
       status:
         minimum: 0
@@ -34,6 +51,49 @@ definitions:
         type: boolean
     required:
     - email
+    type: object
+  model.AccountProfile:
+    properties:
+      address:
+        type: string
+      country:
+        type: string
+      created:
+        type: string
+      date_of_birth:
+        type: string
+      experience:
+        type: integer
+      id:
+        type: integer
+      kin:
+        type: string
+      licence:
+        type: string
+      name:
+        type: string
+      nationality:
+        type: string
+      passport_image_one:
+        type: string
+      passport_image_two:
+        type: string
+      passport_number:
+        type: string
+      phone:
+        type: string
+      profile_completed:
+        type: boolean
+      profile_image:
+        type: string
+      profile_validated:
+        type: boolean
+      rank:
+        type: string
+      ship_experience:
+        type: integer
+      updated:
+        type: string
     type: object
   model.AccountRole:
     properties:
@@ -57,36 +117,22 @@ definitions:
         type: integer
       activated:
         type: boolean
-      completed:
-        type: boolean
       courseID:
         type: integer
       created:
         type: string
-      experience:
-        type: integer
       id:
         type: integer
       issued:
         type: string
-      kin:
-        type: string
-      licence:
-        type: string
-      nationality:
-        type: string
-      rank:
-        type: string
-      shipExpereince:
-        type: string
       type:
+        type: string
+      typeID:
         type: integer
       uid:
         type: string
       updated:
         type: string
-      verified:
-        type: boolean
     type: object
   model.CertificateType:
     properties:
@@ -163,10 +209,31 @@ definitions:
       validated:
         type: integer
     type: object
+  model.MultipartFile:
+    properties:
+      file: {}
+      fileHeader:
+        $ref: '#/definitions/multipart.FileHeader'
+    type: object
   model.SignInResponse:
     properties:
       token:
         type: string
+    type: object
+  multipart.FileHeader:
+    properties:
+      filename:
+        type: string
+      header:
+        $ref: '#/definitions/textproto.MIMEHeader'
+      size:
+        type: integer
+    type: object
+  textproto.MIMEHeader:
+    additionalProperties:
+      items:
+        type: string
+      type: array
     type: object
 info:
   contact:
@@ -330,50 +397,6 @@ paths:
         name: id
         required: true
         type: string
-      - in: formData
-        name: address
-        type: string
-      - in: formData
-        name: country
-        type: string
-      - in: formData
-        name: date_of_birth
-        type: string
-      - in: formData
-        name: email
-        required: true
-        type: string
-      - in: formData
-        name: email_validated
-        type: boolean
-      - in: formData
-        name: id
-        type: integer
-      - in: formData
-        name: image
-        type: string
-      - in: formData
-        maxLength: 100
-        name: name
-        type: string
-      - in: formData
-        name: passport
-        type: string
-      - in: formData
-        minimum: 0
-        name: phone
-        type: integer
-      - in: formData
-        minimum: 0
-        name: role
-        type: integer
-      - in: formData
-        minimum: 0
-        name: status
-        type: integer
-      - in: formData
-        name: temp
-        type: boolean
       produces:
       - application/json
       responses:
@@ -592,59 +615,18 @@ paths:
         required: true
         type: string
       - in: formData
-        name: accessed
-        type: integer
-      - in: formData
-        name: accountID
-        type: integer
-      - in: formData
         name: activated
+        required: true
         type: boolean
-      - in: formData
-        name: completed
-        type: boolean
-      - in: formData
-        name: courseID
-        type: integer
-      - in: formData
-        name: created
-        type: string
-      - in: formData
-        name: experience
-        type: integer
-      - in: formData
-        name: id
-        type: integer
       - in: formData
         name: issued
+        required: true
         type: string
       - in: formData
-        name: kin
-        type: string
-      - in: formData
-        name: licence
-        type: string
-      - in: formData
-        name: nationality
-        type: string
-      - in: formData
-        name: rank
-        type: string
-      - in: formData
-        name: shipExpereince
-        type: string
-      - in: formData
+        minimum: 0
         name: type
+        required: true
         type: integer
-      - in: formData
-        name: uid
-        type: string
-      - in: formData
-        name: updated
-        type: string
-      - in: formData
-        name: verified
-        type: boolean
       produces:
       - application/json
       responses:
@@ -1015,6 +997,158 @@ paths:
       summary: Gets course category for form dropdown
       tags:
       - Lookup table
+  /v1/profile/{id}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      - description: account id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.AccountProfile'
+      summary: Gets an account by id
+      tags:
+      - account
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      - description: account id
+        in: query
+        name: id
+        required: true
+        type: string
+      - in: formData
+        maxLength: 255
+        name: address
+        required: true
+        type: string
+      - in: formData
+        maxLength: 255
+        name: country
+        required: true
+        type: string
+      - in: formData
+        name: date_of_birth
+        required: true
+        type: string
+      - in: formData
+        maximum: 255
+        name: experience
+        required: true
+        type: integer
+      - in: formData
+        maxLength: 255
+        name: kin
+        required: true
+        type: string
+      - in: formData
+        maxLength: 255
+        name: licence
+        required: true
+        type: string
+      - in: formData
+        maxLength: 255
+        name: name
+        required: true
+        type: string
+      - in: formData
+        maxLength: 255
+        name: nationality
+        required: true
+        type: string
+      - in: formData
+        maxLength: 255
+        name: passport_number
+        required: true
+        type: string
+      - in: formData
+        minLength: 0
+        name: phone
+        required: true
+        type: string
+      - in: formData
+        maxLength: 255
+        name: rank
+        required: true
+        type: string
+      - in: formData
+        maximum: 255
+        name: ship_experience
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: Updates an account by ID
+      tags:
+      - account
+  /v1/profile/reject:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      - description: account id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: Updates an account by ID
+      tags:
+      - account
+  /v1/profile/validate:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Auth
+        required: true
+        type: string
+      - description: account id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: Updates an account by ID
+      tags:
+      - account
   /v1/signup/{uid}:
     post:
       consumes:

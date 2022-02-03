@@ -214,76 +214,6 @@
                         "name": "id",
                         "in": "query",
                         "required": true
-                    },
-                    {
-                        "type": "string",
-                        "name": "address",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "string",
-                        "name": "country",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "string",
-                        "name": "date_of_birth",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "string",
-                        "name": "email",
-                        "in": "formData",
-                        "required": true
-                    },
-                    {
-                        "type": "boolean",
-                        "name": "email_validated",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "integer",
-                        "name": "id",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "string",
-                        "name": "image",
-                        "in": "formData"
-                    },
-                    {
-                        "maxLength": 100,
-                        "type": "string",
-                        "name": "name",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "string",
-                        "name": "passport",
-                        "in": "formData"
-                    },
-                    {
-                        "minimum": 0,
-                        "type": "integer",
-                        "name": "phone",
-                        "in": "formData"
-                    },
-                    {
-                        "minimum": 0,
-                        "type": "integer",
-                        "name": "role",
-                        "in": "formData"
-                    },
-                    {
-                        "minimum": 0,
-                        "type": "integer",
-                        "name": "status",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "boolean",
-                        "name": "temp",
-                        "in": "formData"
                     }
                 ],
                 "responses": {
@@ -616,94 +546,23 @@
                         "required": true
                     },
                     {
-                        "type": "integer",
-                        "name": "accessed",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "integer",
-                        "name": "accountID",
-                        "in": "formData"
-                    },
-                    {
                         "type": "boolean",
                         "name": "activated",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "boolean",
-                        "name": "completed",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "integer",
-                        "name": "courseID",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "string",
-                        "name": "created",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "integer",
-                        "name": "experience",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "integer",
-                        "name": "id",
-                        "in": "formData"
+                        "in": "formData",
+                        "required": true
                     },
                     {
                         "type": "string",
                         "name": "issued",
-                        "in": "formData"
+                        "in": "formData",
+                        "required": true
                     },
                     {
-                        "type": "string",
-                        "name": "kin",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "string",
-                        "name": "licence",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "string",
-                        "name": "nationality",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "string",
-                        "name": "rank",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "string",
-                        "name": "shipExpereince",
-                        "in": "formData"
-                    },
-                    {
+                        "minimum": 0,
                         "type": "integer",
                         "name": "type",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "string",
-                        "name": "uid",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "string",
-                        "name": "updated",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "boolean",
-                        "name": "verified",
-                        "in": "formData"
+                        "in": "formData",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -1291,6 +1150,230 @@
                 }
             }
         },
+        "/v1/profile/reject": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "account"
+                ],
+                "summary": "Updates an account by ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "Auth",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "account id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/v1/profile/validate": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "account"
+                ],
+                "summary": "Updates an account by ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "Auth",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "account id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/v1/profile/{id}": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "account"
+                ],
+                "summary": "Gets an account by id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "Auth",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "account id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.AccountProfile"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "account"
+                ],
+                "summary": "Updates an account by ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "Auth",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "account id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "maxLength": 255,
+                        "type": "string",
+                        "name": "address",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "maxLength": 255,
+                        "type": "string",
+                        "name": "country",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "date_of_birth",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "maximum": 255,
+                        "type": "integer",
+                        "name": "experience",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "maxLength": 255,
+                        "type": "string",
+                        "name": "kin",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "maxLength": 255,
+                        "type": "string",
+                        "name": "licence",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "maxLength": 255,
+                        "type": "string",
+                        "name": "name",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "maxLength": 255,
+                        "type": "string",
+                        "name": "nationality",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "maxLength": 255,
+                        "type": "string",
+                        "name": "passport_number",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "minLength": 0,
+                        "type": "string",
+                        "name": "phone",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "maxLength": 255,
+                        "type": "string",
+                        "name": "rank",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "maximum": 255,
+                        "type": "integer",
+                        "name": "ship_experience",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
         "/v1/signup/{uid}": {
             "post": {
                 "consumes": [
@@ -1371,6 +1454,9 @@
                 "country": {
                     "type": "string"
                 },
+                "created": {
+                    "type": "string"
+                },
                 "date_of_birth": {
                     "type": "string"
                 },
@@ -1380,26 +1466,49 @@
                 "email_validated": {
                     "type": "boolean"
                 },
+                "experience": {
+                    "type": "integer"
+                },
                 "id": {
                     "type": "integer"
                 },
-                "image": {
+                "kin": {
+                    "type": "string"
+                },
+                "licence": {
                     "type": "string"
                 },
                 "name": {
                     "type": "string",
                     "maxLength": 100
                 },
+                "nationality": {
+                    "type": "string"
+                },
                 "passport": {
                     "type": "string"
                 },
                 "phone": {
-                    "type": "integer",
-                    "minimum": 0
+                    "type": "string"
+                },
+                "profile_completed": {
+                    "type": "boolean"
+                },
+                "profile_image": {
+                    "type": "string"
+                },
+                "profile_validated": {
+                    "type": "boolean"
+                },
+                "rank": {
+                    "type": "string"
                 },
                 "role": {
                     "type": "integer",
                     "minimum": 0
+                },
+                "ship_experience": {
+                    "type": "integer"
                 },
                 "status": {
                     "type": "integer",
@@ -1407,6 +1516,71 @@
                 },
                 "temp": {
                     "type": "boolean"
+                }
+            }
+        },
+        "model.AccountProfile": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "created": {
+                    "type": "string"
+                },
+                "date_of_birth": {
+                    "type": "string"
+                },
+                "experience": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "kin": {
+                    "type": "string"
+                },
+                "licence": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "nationality": {
+                    "type": "string"
+                },
+                "passport_image_one": {
+                    "type": "string"
+                },
+                "passport_image_two": {
+                    "type": "string"
+                },
+                "passport_number": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "profile_completed": {
+                    "type": "boolean"
+                },
+                "profile_image": {
+                    "type": "string"
+                },
+                "profile_validated": {
+                    "type": "boolean"
+                },
+                "rank": {
+                    "type": "string"
+                },
+                "ship_experience": {
+                    "type": "integer"
+                },
+                "updated": {
+                    "type": "string"
                 }
             }
         },
@@ -1444,17 +1618,11 @@
                 "activated": {
                     "type": "boolean"
                 },
-                "completed": {
-                    "type": "boolean"
-                },
                 "courseID": {
                     "type": "integer"
                 },
                 "created": {
                     "type": "string"
-                },
-                "experience": {
-                    "type": "integer"
                 },
                 "id": {
                     "type": "integer"
@@ -1462,22 +1630,10 @@
                 "issued": {
                     "type": "string"
                 },
-                "kin": {
-                    "type": "string"
-                },
-                "licence": {
-                    "type": "string"
-                },
-                "nationality": {
-                    "type": "string"
-                },
-                "rank": {
-                    "type": "string"
-                },
-                "shipExpereince": {
-                    "type": "string"
-                },
                 "type": {
+                    "type": "string"
+                },
+                "typeID": {
                     "type": "integer"
                 },
                 "uid": {
@@ -1485,9 +1641,6 @@
                 },
                 "updated": {
                     "type": "string"
-                },
-                "verified": {
-                    "type": "boolean"
                 }
             }
         },
@@ -1600,10 +1753,42 @@
                 }
             }
         },
+        "model.MultipartFile": {
+            "type": "object",
+            "properties": {
+                "file": {},
+                "fileHeader": {
+                    "$ref": "#/definitions/multipart.FileHeader"
+                }
+            }
+        },
         "model.SignInResponse": {
             "type": "object",
             "properties": {
                 "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "multipart.FileHeader": {
+            "type": "object",
+            "properties": {
+                "filename": {
+                    "type": "string"
+                },
+                "header": {
+                    "$ref": "#/definitions/textproto.MIMEHeader"
+                },
+                "size": {
+                    "type": "integer"
+                }
+            }
+        },
+        "textproto.MIMEHeader": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "array",
+                "items": {
                     "type": "string"
                 }
             }
