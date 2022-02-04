@@ -1159,7 +1159,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "account"
+                    "profile"
                 ],
                 "summary": "Updates an account by ID",
                 "parameters": [
@@ -1194,7 +1194,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "account"
+                    "profile"
                 ],
                 "summary": "Updates an account by ID",
                 "parameters": [
@@ -1229,7 +1229,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "account"
+                    "profile"
                 ],
                 "summary": "Gets an account by id",
                 "parameters": [
@@ -1265,7 +1265,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "account"
+                    "profile"
                 ],
                 "summary": "Updates an account by ID",
                 "parameters": [

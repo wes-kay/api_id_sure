@@ -1175,7 +1175,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "account"
+                    "profile"
                 ],
                 "summary": "Updates an account by ID",
                 "parameters": [
@@ -1210,7 +1210,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "account"
+                    "profile"
                 ],
                 "summary": "Updates an account by ID",
                 "parameters": [
@@ -1245,7 +1245,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "account"
+                    "profile"
                 ],
                 "summary": "Gets an account by id",
                 "parameters": [
@@ -1281,7 +1281,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "account"
+                    "profile"
                 ],
                 "summary": "Updates an account by ID",
                 "parameters": [

@@ -1021,7 +1021,7 @@ paths:
             $ref: '#/definitions/model.AccountProfile'
       summary: Gets an account by id
       tags:
-      - account
+      - profile
     put:
       consumes:
       - application/json
@@ -1102,7 +1102,7 @@ paths:
           description: ""
       summary: Updates an account by ID
       tags:
-      - account
+      - profile
   /v1/profile/reject:
     post:
       consumes:
@@ -1125,7 +1125,7 @@ paths:
           description: ""
       summary: Updates an account by ID
       tags:
-      - account
+      - profile
   /v1/profile/validate:
     post:
       consumes:
@@ -1148,7 +1148,7 @@ paths:
           description: ""
       summary: Updates an account by ID
       tags:
-      - account
+      - profile
   /v1/signup/{uid}:
     post:
       consumes:
